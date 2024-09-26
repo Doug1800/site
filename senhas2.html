@@ -1,0 +1,58 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+  <title>Troca de Senha</title>
+  <style type="text/css">
+    body { font-family: Verdana,Arial,Courier New; font-size: 0.7em;  }
+    th { text-align: right; padding: 0.8em; }
+    #container { text-align: center; width: 500px; margin: 5% auto; }
+    .msg_yes { margin: 0 auto; text-align: center; color: green; background: #D4EAD4; border: 1px solid green; border-radius: 10px; margin: 2px; }
+    .msg_no { margin: 0 auto; text-align: center; color: red; background: #FFF0F0; border: 1px solid red; border-radius: 10px; margin: 2px; }
+  </style>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+
+<body>
+
+  <div id="container">
+    <h2><span id="result_box"><span title="alteraçao senha aquid ldap" onmouseover="this.style.backgroundColor='#ebeff9'" onmouseout="this.style.backgroundColor='#fff'">Alteracao de Senha</h2>
+
+  
+
+
+   
+   <?php
+      if (isset($_POST["alterar"])) {
+        changePassword($_POST['usuario'],$_POST['antigasenha'],$_POST['novasenha1'],$_POST['novasenha2']);
+        global $message_css;
+        if ($message_css == "yes") {
+          ?><div class="msg_yes"><?php
+         } else {
+          ?>
+<?php
+      } ?>
+
+
+    <form action="<?php print $_SERVER['PHP_SELF']; ?>" name="passwordChange" method="post">
+      <table style="width: 400px; margin: 0 auto;">
+        
+
+<tr>
+        <th>N. Matricula:</th><td><input name="usuario" type="text" size="20px" autocomplete="off" /></td></tr>
+        <tr>
+        <th>Senha Atual:</th><td><input name="antigasenha" size="20px" type="password" /></td></tr>
+        <tr>
+        <th>Nova Senha:</th><td><input name="novasenha1" size="20px" type="password" /></td></tr>
+        <tr>
+          <th>Confirmar Senha:</th><td><input name="novasenha2" size="20px" type="password" /></td></tr>
+        <tr><td colspan="2" style="text-align: center;" >
+          <input name="alterar" type="submit" value="Alterar senha"/>
+          <button onclick="$('frm').action='index.php';$('frm').submit();">Cancela</button>
+        </td></tr>
+      </table>
+    </form>
+  </div>
+</body>
+</html>
